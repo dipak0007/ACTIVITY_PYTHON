@@ -1,0 +1,39 @@
+{% extends 'buyer/base.html' %}
+{% load static %}
+{% block title %}
+OTP VERIFY
+{% endblock%}
+{% block styles %}
+{% endblock%}
+{% block body %}
+<section class="vh-100">
+    <h1 class="display-6 fw-bold text-center text-dark my-3">Verify your OTP!!!</h1>
+    <div class="container-fluid h-custom my-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-8 col-lg-6 col-xl-4 ">
+                <form action="{% url 'genrate_otp_page' %}" method="post">
+                    {% csrf_token %}
+                    <!-- hiddan email input field -->
+                    <input type="hidden" name="email" id="email" value="{{cum_email}}">
+                    <!-- OTP input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="otp">Enter OTP</label>
+                        <input type="text" id="otp" name="otp" class="form-control form-control-lg"
+                            placeholder="******" />
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;">Verify</button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">If you didn't receive the OTP, you can <a href="#" class="btn link-primary">Resend OTP?</a>.</p>
+                    </div>
+
+                </form>
+            </div>
+            
+        </div>
+    </div>
+
+</section>
+
+{% endblock%}

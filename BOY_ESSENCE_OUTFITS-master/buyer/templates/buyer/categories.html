@@ -1,0 +1,58 @@
+{% extends 'buyer/base.html' %}
+{% load static %}
+{% block title %}
+Shopping|categoris
+{% endblock%}
+{% block styles %}
+{% endblock %}
+{% block body %}
+<div class="container nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-center ">
+        
+        <a class="p-2" style="text-decoration: none; color: coral; font-size:large; font-weight: bold;" >Categories : </a>
+        {% for category in categoris %}
+        <a class="p-2 link-secondary" href="#">{{category.name}}</a>
+        {% endfor %}
+    </nav>
+</div>
+<section>
+    <div class="container mb-5">
+        <div class="container py-5">
+            <div class="row d-flex justify-content-center align-items-stretch">
+                {% for product in products %}
+                <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 my-3">
+                    <div class="card h-100 position-relative"> <!-- Added position-relative to make positioning easier -->
+                        <!-- Discount Label -->
+                        {% comment %} <div class="discount-label position-absolute top-0 start-0">
+                            <span class="badge bg-danger ">{{product.discount}}% off</span>
+                        </div> {% endcomment %}
+                        <img src="{{product.image.url}}" class="card-img-top" alt="Laptop" />
+                        <div class="card-body d-flex flex-column justify-content-between"> <!-- Added flex-column and justify-content-between classes -->
+                            <div>
+                                <div class="d-flex justify-content-between">
+                                    <p class="small"><a href="#!" class="text-muted">{{product.category_id.name}}</a></p>
+                                    <p class="small text-danger"><s>₹{{product.mrp_price}}</s></p>
+                                </div>
+                
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">{{product.title}}</h5>
+                                    <h5 class="text-dark mb-0">₹{{product.selling_price}} </h5>
+                                </div>
+                            </div>
+                
+                            <!-- Buy Button -->
+                            <div class="mt-auto"> <!-- Added mt-auto class to push buttons to the bottom -->
+                                <a href="{% url 'add_item_in_cart' product_id=product.product_id %}" class="btn btn-primary">Add to Cart</a>
+                                <button class="btn btn-outline-primary">More Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

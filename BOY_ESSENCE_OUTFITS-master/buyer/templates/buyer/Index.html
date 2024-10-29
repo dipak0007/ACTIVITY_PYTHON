@@ -1,0 +1,29 @@
+{% extends 'buyer/base.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock%}
+{% block styles %}
+<style>
+  .custom-blue {
+      color: blue; /* Set text color to blue */
+  }
+</style>
+
+{% endblock %}
+{% block body %}
+<div class="container-fluid col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{% static 'buyer/images/img1.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="750" height="1000" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-6 fw-light lh-1 mb-3"><span class="text fw-bold custom-blue"> WELCOME TO BOY ESSENCE OUTFITS !</span></h1>
+        <p class="lead">Discover the essence of style at Boy Essence Outfits. Shop our curated selection of sophisticated men's attire, ranging from timeless classics to contemporary trends. Explore premium garments crafted from quality materials, ensuring both comfort and durability. Elevate your wardrobe with our collection, where confidence meets refined elegance. Experience the essence of true gentlemanly fashion with Boy Essence Outfits.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <a href="{% url 'my_shopping_page' %}" class="btn btn-dark btn-lg px-4 me-md-2">Start shopping</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock%}
