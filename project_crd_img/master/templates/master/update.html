@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>UPDATE DETAILS...!</h1>
+    <form action="{% url 'update_mydata' pk=getdata.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if getdata %}
+
+        <label for="">name : </label>
+        <input type="text" name="name" value="{{getdata.name}}" placeholder="your name"><br><br>
+
+        <label for="">email : </label>
+        <input type="email" name="email" value="{{getdata.email}}" placeholder="your email" required><br><br>
+
+        <label for="">Gender : </label><br>
+        <input type="radio" name="gender" value="M" required>
+        <label for="">Male</label><br>
+
+        <input type="radio" name="gender" value="F" required>
+        <label for="">Female</label><br>
+
+        <input type="radio" name="gender" value="O" required>
+        <label for="">Other</label><br><br>
+
+        <label for="">Old profile : </label>
+        {% if getdata.profile %}
+        <img src="{{getdata.profile.url}}" alt="getdata.name" height="100" width="150"><br><br>
+        {% else %}
+         <p>image not available </p>
+         {% endif %}
+
+        <label for="">new Image : </label>
+        <input type="file" name="profile"><br><br>
+
+        <input type="submit" value="save">
+        {% endif %}
+    </form>
+</body>
+</html>

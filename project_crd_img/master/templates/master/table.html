@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ALL INFO..!</h1>
+    <table border="2px">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>GENDER</th>
+                <th>PROFILE</th>
+                <th>EDIT</th>
+                <th>DELETE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if mydata %}
+            {% for val in mydata %}
+            <tr>
+                <td>{{val.id}}</td>
+                <td>{{val.name}}</td>
+                <td>{{val.email}}</td>
+                <td>{{val.gender}}</td>
+                <td>
+                    {% if val.profile %}
+                        <img src="{{val.profile.url}}" alt="{{val.name}}" height="100" width="150">
+                    {% else %}
+                         <p>no image found </p>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'edit_page' pk=val.id %}">EDIT</a>
+                </td>
+                <td>
+                    <a href="{% url 'delete_view' pk=val.id %}">DELETE</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="7" style="text-align: center;"><p>NO DATA available</p></td>
+            </tr>
+            {% endif%}
+        </tbody>
+    </table><br>
+<a href="{% url 'myformpage'%}">BACK TO FORM</a>
+</body>
+</html>
